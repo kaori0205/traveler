@@ -2,4 +2,8 @@
 <% @posts.each do |post| %>
   <p>旅行先</p>
   <span><%= link_to post.location, post_path(post) %></span>
+  <p>画像</p>
+  <% if post.image.attached? %>
+   <%= image_tag post.image.variant(resize_to_limit: [300, 200]) %>
+  <% end %>
 <% end %>
