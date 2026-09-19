@@ -4,6 +4,7 @@
   <span><%= link_to post.location, post_path(post) %></span>
   <p>画像</p>
   <% if post.image.attached? %>
-   <%= image_tag post.image.variant(resize_to_limit: [300, 200]) %>
+   <%= image_tag post.image, style: "width: 300px; height: 200px; object-fit:
+cover;" %>
   <% end %>
 <% end %>
