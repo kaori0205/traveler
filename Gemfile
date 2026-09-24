@@ -68,3 +68,4 @@ end
 gem 'bootstrap', '~> 5.3.8'
 gem 'dartsass-sprockets'
 gem 'devise'
+gem 'kaminari'
