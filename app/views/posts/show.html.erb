@@ -10,7 +10,17 @@
        <%= image_tag @post.image, style: "width: 450px; height: 350px; object-fit:
        cover;" %><br>
       <% end %>
-      <p class="caption"><%= @post.location %></p>
+      <p class="caption"><%= @post.location %>
+      <% if @post.favorited_by?(current_user) %>
+        <%= link_to post_favorites_path(@post),  data: { turbo_method: :delete }, class: "favorite_btn" do %>
+          ♥<%= @post.favorites.count %> いいね
+        <% end %>
+      <% else %>
+        <%= link_to post_favorites_path(@post),  data: { turbo_method: :post }, class: "favorite_btn" do %>
+          ♡<%= @post.favorites.count %> いいね
+        <% end %>
+      <% end %>
+      </p>
       <h2>感想</h2>
       <p id="text"><%= @post.text %></p>
       <%= link_to '編集する', edit_post_path(@post.id), class: "btn btn-info mr-3" %>
