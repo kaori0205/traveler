@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users, only:[:index, :show] 
+  # /users/:id
+  resources :users, only:[:index, :show]
+  
+  #/posts/:post_id/comments/:id 
   resources :posts do
-  resources :comments, only:[:create, :destroy]
-  resource :favorites, only:[:create, :destroy]
+    resources :comments, only:[:create, :destroy]
+    resource :favorites, only:[:create, :destroy]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
