@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
   # /users/:id
-  resources :users, only:[:index, :show, :edit, :update]
+  resources :users, only:[:index, :show, :edit, :update] do
+    member do
+      get :follows
+      get :followers
+    end
+    resource :relationships, only: [:create, :destroy]
+  end
   
   #/posts/:post_id/comments/:id 
   resources :posts do
