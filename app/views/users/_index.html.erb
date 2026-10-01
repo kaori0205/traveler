@@ -1,0 +1,18 @@
+ <div class="row mt-5 w-50">
+      <% users.each do |user| %>
+        <div class="one-post card mt-3">
+          <%= link_to user_path(user) do %>
+            <div class="d-flex">
+              <% if user.profile_image.attached? %>
+                <%= image_tag user.profile_image, size: '50x50', class: "mt-3 profile-img" %>
+              <% else %>
+                <%= image_tag "no_image.svg", size: '50x50', class: "mt-3 profile-img" %>
+              <% end %>
+              <p class="caption h4 mt-4 user-name"><%= user.name %></p>
+            </div>
+            <p class="caption"><%= "#{user.posts.count} 投稿" %></p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <%= paginate users %>
