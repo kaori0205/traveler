@@ -27,5 +27,8 @@ class User < ApplicationRecord
   # フォローしていればtrueを返す
   def following?(user)
     following_user.include?(user)
-  end 
+  end
+
+  validates :name, presence: true
+
 end

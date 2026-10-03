@@ -23,6 +23,9 @@
     <%= stylesheet_link_tag "homes", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "posts", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "users", "data-turbo-track": "reload" %>
+    <% if %w[registrations sessions].include?(controller_name) && %w[new create].include?(action_name) %>
+      <%= stylesheet_link_tag "signup", "data-turbo-track": "reload" %>
+    <% end %>
     <%= javascript_importmap_tags %>
   </head>
 
