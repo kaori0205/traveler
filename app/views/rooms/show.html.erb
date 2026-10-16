@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <% @entries.each do |e| %>
+      <% if @my_account != e.user.id %>
+        <h4><strong><%= e.user.name %>さんとのメッセージ</strong></h4>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="row my-3">
+    <%= link_to "Usersページに戻る", users_path, class:"btn btn-secondary btn-sm" %>
+  </div>
+
+  <div class="row">
+    <table class="table table-hover">
+    <% if @messages.present? %>
+      <% @messages.each do |m| %>
+        <tr>
+          <td><%= m.user.name %></td>
+          <td><%= m.message %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </table>
+  </div>
+
+  <div class="row">
+  <%= form_for @message do |f| %>
+    <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 50, class:"form-text-field" %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+      <%= f.submit "送信",class:"btn btn-success"%>
+  <% end %>
+  </div>
+</div>

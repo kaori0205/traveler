@@ -23,6 +23,20 @@
         </p>
       <% end %>
     <% end %>
+    <% unless @user.id == current_user.id %>
+      <% if (current_user.following? @user) && (@user.following? current_user) %>
+      <% if @is_room == true %>
+        <p class="user-show-room"><a href="/rooms/<%= @room_id %>" class="btn btn-primary btn-sm">DMを送る</a></p>
+      <% else %>
+        <%= form_for @room do |f| %>
+          <%= fields_for @entry do |e| %>
+            <%= e.hidden_field :user_id, value: @user.id %>
+          <% end %>
+          <%= f.submit "DMをはじめる", class:"btn btn-primary btn-sm" %>
+        <% end %>
+      <% end %>
+      <% end %>
+    <% end %>
     <div class="d-flex w-100">
       <% if @user.profile_image.attached? %>
         <%= image_tag @user.profile_image, size: '100x100', class: "mb-3 profile-img" %>
