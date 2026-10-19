@@ -25,8 +25,8 @@ class Post < ApplicationRecord
 
   def self.popular
     left_joins(:favorites)
-      .group(:id)
-      .order(Arel.sql('COUNT(favorites.id) DESC, posts.created_at DESC'))
+     .group(:id)
+     .order('COUNT(favorites.id) DESC', 'posts.created_at DESC')
   end
 
   def excerpt(length = 20)

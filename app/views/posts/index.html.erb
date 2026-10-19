@@ -3,6 +3,7 @@
     <div class="row mt-5">
       <h1 class="font-weight-normal">旅行投稿一覧</h1>
     </div>
+    <%= link_to '人気順', posts_path(sort: 'popular') %>
     <%= render 'index', posts: @posts %>
   </div>
 </div>
